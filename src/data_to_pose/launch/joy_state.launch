@@ -2,7 +2,10 @@
     <node name="imu_publisher" pkg="data_to_pose" type="imudata.py" output="screen"/>
     <node name="data_to_pose_node" pkg="data_to_pose" type="data_to_pose_node" output="screen"/>
     <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
-        <param name="port" type="string" value="/dev/ttyACM0"/>
+        <param name="port" type="string" value="/dev/ttyACM1"/>
         <param name="baud" type="int" value="57600"/>
         </node>
+    <node name="turtle" pkg="turtlesim" type="turtlesim_node" respawn="false"> 
+        <remap from="/turtle1/cmd_vel" to="/cmd_vel"/>
+    </node>   
 </launch>
