@@ -1,0 +1,2 @@
+ws_moveit/src/moveit/moveit_plugins/moveit_plugins
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/moveit_plugins/cmake.lock /home/ahmed/Desktop/repos/Controller_Research/devel/./cmake.lock

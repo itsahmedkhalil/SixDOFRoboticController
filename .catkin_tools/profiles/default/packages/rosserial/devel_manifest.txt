@@ -1,0 +1,2 @@
+rosserial/rosserial
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial/cmake.lock /home/ahmed/Desktop/repos/Controller_Research/devel/./cmake.lock

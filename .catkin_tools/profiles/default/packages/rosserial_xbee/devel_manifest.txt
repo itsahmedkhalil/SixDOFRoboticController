@@ -1,0 +1,7 @@
+rosserial/rosserial_xbee
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_xbee/cmake.lock /home/ahmed/Desktop/repos/Controller_Research/devel/./cmake.lock
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_xbee/share/rosserial_xbee/cmake/rosserial_xbeeConfig-version.cmake /home/ahmed/Desktop/repos/Controller_Research/devel/share/rosserial_xbee/cmake/rosserial_xbeeConfig-version.cmake
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_xbee/share/rosserial_xbee/cmake/rosserial_xbeeConfig.cmake /home/ahmed/Desktop/repos/Controller_Research/devel/share/rosserial_xbee/cmake/rosserial_xbeeConfig.cmake
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_xbee/lib/pkgconfig/rosserial_xbee.pc /home/ahmed/Desktop/repos/Controller_Research/devel/lib/pkgconfig/rosserial_xbee.pc
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_xbee/lib/python3/dist-packages/xbee/__init__.py /home/ahmed/Desktop/repos/Controller_Research/devel/lib/python3/dist-packages/xbee/__init__.py
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_xbee/lib/python3/dist-packages/rosserial_xbee/__init__.py /home/ahmed/Desktop/repos/Controller_Research/devel/lib/python3/dist-packages/rosserial_xbee/__init__.py

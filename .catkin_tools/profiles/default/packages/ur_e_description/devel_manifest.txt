@@ -1,0 +1,5 @@
+universal_robot/ur_e_description
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/ur_e_description/cmake.lock /home/ahmed/Desktop/repos/Controller_Research/devel/./cmake.lock
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/ur_e_description/share/ur_e_description/cmake/ur_e_descriptionConfig-version.cmake /home/ahmed/Desktop/repos/Controller_Research/devel/share/ur_e_description/cmake/ur_e_descriptionConfig-version.cmake
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/ur_e_description/share/ur_e_description/cmake/ur_e_descriptionConfig.cmake /home/ahmed/Desktop/repos/Controller_Research/devel/share/ur_e_description/cmake/ur_e_descriptionConfig.cmake
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/ur_e_description/lib/pkgconfig/ur_e_description.pc /home/ahmed/Desktop/repos/Controller_Research/devel/lib/pkgconfig/ur_e_description.pc

@@ -1,0 +1,8 @@
+rosserial/rosserial_vex_v5
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_vex_v5/cmake.lock /home/ahmed/Desktop/repos/Controller_Research/devel/./cmake.lock
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_vex_v5/share/rosserial_vex_v5/cmake.lock /home/ahmed/Desktop/repos/Controller_Research/devel/share/rosserial_vex_v5/cmake.lock
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_vex_v5/share/rosserial_vex_v5/make_libraries.py /home/ahmed/Desktop/repos/Controller_Research/devel/share/rosserial_vex_v5/make_libraries.py
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_vex_v5/share/rosserial_vex_v5/cmake/rosserial_vex_v5Config-version.cmake /home/ahmed/Desktop/repos/Controller_Research/devel/share/rosserial_vex_v5/cmake/rosserial_vex_v5Config-version.cmake
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_vex_v5/share/rosserial_vex_v5/cmake/rosserial_vex_v5Config.cmake /home/ahmed/Desktop/repos/Controller_Research/devel/share/rosserial_vex_v5/cmake/rosserial_vex_v5Config.cmake
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_vex_v5/lib/pkgconfig/rosserial_vex_v5.pc /home/ahmed/Desktop/repos/Controller_Research/devel/lib/pkgconfig/rosserial_vex_v5.pc
+/home/ahmed/Desktop/repos/Controller_Research/devel/.private/rosserial_vex_v5/lib/python3/dist-packages/rosserial_vex_v5/__init__.py /home/ahmed/Desktop/repos/Controller_Research/devel/lib/python3/dist-packages/rosserial_vex_v5/__init__.py
