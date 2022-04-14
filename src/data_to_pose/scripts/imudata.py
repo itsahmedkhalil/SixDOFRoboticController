@@ -105,8 +105,8 @@ def main():
             imu_angle.y = -quat[2]
             imu_angle.z = -quat[3]
 
-            angVel.x = 0.0
-            angVel.y = 0.0
+            angVel.x = gyr[0]*np.pi/180.0
+            angVel.y = gyr[1]*np.pi/180.0
             angVel.z = gyr[2]*np.pi/180.0
             
             imuPub.publish(imu_angle)
