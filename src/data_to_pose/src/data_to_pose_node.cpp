@@ -1,3 +1,6 @@
+#include <iostream>
+#include <cmath>
+#include <eigen3/Eigen/Dense>
 #include "ros/ros.h"
 #include "std_msgs/Int16MultiArray.h"
 #include "geometry_msgs/Quaternion.h"
@@ -16,22 +19,30 @@ class JoyControl {
     ros::Subscriber gyr_subscriber;
     //ros::ServiceServer reset_service;
     public:
+    float M = 3;
     float joyX, joyY, joyZ = 0.0;
     float velX, velY, velZ = 0.0;
     float posX, posY, posZ = 0.0;
     float dt = 1/50.0;
-    float angleX, angleY, angleZ = 0.0; 
-    float angleW = 1.0;
+    float q1, q2, q3 = 0.0;
+    float q0 = 1.0;
     float angVelX, angVelY, angVelZ = 0.0;
+    Eigen::Matrix3d R;
+    Eigen::Quaterniond q;
+    Eigen::Vector3d Pos;
+
+    //Eigen::MatrixXf a(10,15);
+
+
     JoyControl(ros::NodeHandle *nh) {
-        
-        imu_subscriber = nh->subscribe("/imu_data", 1000, 
+
+        imu_subscriber = nh->subscribe("/imu_data", 1000,
             &JoyControl::OrienationCallback, this);
-        gyr_subscriber = nh->subscribe("/gyr_data", 1000, 
+        gyr_subscriber = nh->subscribe("/gyr_data", 1000,
             &JoyControl::AngVelCallback, this);
-        joy_subscriber = nh->subscribe("/joy", 1000, 
+        joy_subscriber = nh->subscribe("/joy", 1000,
             &JoyControl::PositionCallback, this);
-        // reset_service = nh->advertiseService("/reset_counter", 
+        // reset_service = nh->advertiseService("/reset_counter",
         //     &NumberCounter::callback_reset_counter, this);
     }
 
@@ -40,18 +51,33 @@ class JoyControl {
         angVelY = msg->y;
         angVelZ = msg->z;
     }
-   
+
     void OrienationCallback(const geometry_msgs::Quaternion::ConstPtr& msg)
     {
         //geometry_msgs::Quaternion angle;
-        angleX = msg->x;
-        angleY = msg->y;
-        angleZ = msg->z;
-        angleW = msg->w;
+        q1 = msg->x;
+        q2 = msg->y;
+        q3 = msg->z;
+        q0 = msg->w;
+        q.x() = q1;
+        q.y() = q2;
+        q.z() = q3;
+        q.w() = q0;
+
+        R = q.normalized().toRotationMatrix();
+
+
         //Todo: rotation matrix from quaternion
-        
-
-
+        // R[0][0] = 2*(pow(2,q0) +  pow(2,q1)) - 1;
+        // R[1][0] = 2*(q1*q2 + q0*q3);
+        // R[2][0] = 2*(q1*q3 - q0*q2);
+        // R[0][1] = 2*(q1*q2 - q0*q3);
+        //float Pos[3][1];
+        // R[1][1] = 2*(pow(2,q0) +  pow(2,q2)) - 1;
+        // R[2][1] = 2*(q2*q3 + q0*q1);
+        // R[0][2] = 2*(q1*q3 + q0*q2);
+        // R[1][2] = 2*(q2*q3 - q0*q1);
+        // R[2][2] = 2*(pow(2,q0) + pow(2,q3)) - 1;
     }
 
     void PositionCallback(const std_msgs::Int16MultiArray::ConstPtr& msg)
@@ -74,10 +100,15 @@ class JoyControl {
         if ((joyY) == 0) {
             velZ = 0.0;
         } else{
-            velZ = joyZ * 0.05;
+            velZ = joyZ * 2.0;
             posZ += velZ*dt;
         }
-        
+
+        Pos.x() = posX;
+        Pos.y() = posY;
+        Pos.z() = posZ;
+
+
     }
 
 };
@@ -92,23 +123,24 @@ int main(int argc, char **argv)
     //ros::Publisher state_publisher = nh.advertise<data_to_pose::Controller>("/position_angle", 1000);
     static tf2_ros::TransformBroadcaster br;
     geometry_msgs::TransformStamped transformStamped;
-    ros::Rate r(100);     // 100 hz                                                                                                                                        
+    ros::Rate r(100);     // 100 hz
 
-    while(ros::ok())                                                                                                                                               
-    {                                                                                                                                                            
+    while(ros::ok())
+    {
         ros::spinOnce();
         transformStamped.header.stamp = ros::Time::now();
         transformStamped.header.frame_id = "world";
         transformStamped.child_frame_id = "controller";
+
         transformStamped.transform.translation.x =  jc.posX;
         transformStamped.transform.translation.y =  jc.posY;
         transformStamped.transform.translation.z =  jc.posZ;
-        transformStamped.transform.rotation.x =  jc.angleX;
-        transformStamped.transform.rotation.y =  jc.angleY; 
-        transformStamped.transform.rotation.z =  jc.angleZ; 
-        transformStamped.transform.rotation.w =  jc.angleW;
-        br.sendTransform(transformStamped);                                                                                                                          
-        //cout << jc.velX << endl;
+        transformStamped.transform.rotation.x =  jc.q1;
+        transformStamped.transform.rotation.y =  jc.q2;
+        transformStamped.transform.rotation.z =  jc.q3;
+        transformStamped.transform.rotation.w =  jc.q0;
+        br.sendTransform(transformStamped);
+        cout << jc.R<< endl;
         //data_to_pose::Controller state;
         // geometry_msgs::TwistStamped twist;
         // twist.twist.linear.x = jc.velX;
@@ -117,9 +149,9 @@ int main(int argc, char **argv)
         // twist.twist.angular.x = jc.angVelX;
         // twist.twist.angular.y = jc.angVelY;
         // twist.twist.angular.z = jc.angVelZ;
-        // twist_publisher.publish(twist);                                                                                                 
-        r.sleep();                                                                                                                                           
-    }              
+        // twist_publisher.publish(twist);
+        r.sleep();
+    }
 
     //ros::spin();
 

@@ -105,6 +105,8 @@ def main():
             imu_angle.y = -quat[2]
             imu_angle.z = -quat[3]
 
+            r = R.from_quat([-quat[1],-quat[2],-quat[3],quat[0]])
+            print(r)
             angVel.x = gyr[0]*np.pi/180.0
             angVel.y = gyr[1]*np.pi/180.0
             angVel.z = gyr[2]*np.pi/180.0
