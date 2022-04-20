@@ -3,8 +3,8 @@
 #include <std_msgs/Int16MultiArray.h>
 #define VRx A0    
 #define VRy A1
-#define B1 12     //Red button connected to D12
-#define B2 11     //Blue button connected to D11
+#define B1 10     //Red button connected to D12
+#define B2 8     //Blue button connected to D11
 int xPosition;
 int yPosition;
 int zPos;
