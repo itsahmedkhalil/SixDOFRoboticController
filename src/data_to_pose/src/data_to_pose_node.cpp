@@ -27,9 +27,9 @@ class JoyControl {
     float q1, q2, q3 = 0.0;
     float q0 = 1.0;
     float angVelX, angVelY, angVelZ = 0.0;
-    Eigen::Matrix3d R;
-    Eigen::Quaterniond q;
-    Eigen::Vector3d Pos;
+    // Eigen::Matrix3d R;
+    // Eigen::Quaterniond q;
+    // Eigen::Vector3d Pos;
 
     //Eigen::MatrixXf a(10,15);
 
@@ -59,12 +59,12 @@ class JoyControl {
         q2 = msg->y;
         q3 = msg->z;
         q0 = msg->w;
-        q.x() = q1;
-        q.y() = q2;
-        q.z() = q3;
-        q.w() = q0;
+        // q.x() = q1;
+        // q.y() = q2;
+        // q.z() = q3;
+        // q.w() = q0;
 
-        R = q.normalized().toRotationMatrix();
+        // R = q.normalized().toRotationMatrix();
 
 
         //Todo: rotation matrix from quaternion
@@ -104,9 +104,9 @@ class JoyControl {
             posZ += velZ*dt;
         }
 
-        Pos.x() = posX;
-        Pos.y() = posY;
-        Pos.z() = posZ;
+        // Pos.x() = posX;
+        // Pos.y() = posY;
+        // Pos.z() = posZ;
 
 
     }
@@ -140,7 +140,7 @@ int main(int argc, char **argv)
         transformStamped.transform.rotation.z =  jc.q3;
         transformStamped.transform.rotation.w =  jc.q0;
         br.sendTransform(transformStamped);
-        cout << jc.R<< endl;
+        // cout << jc.R<< endl;
         //data_to_pose::Controller state;
         // geometry_msgs::TwistStamped twist;
         // twist.twist.linear.x = jc.velX;

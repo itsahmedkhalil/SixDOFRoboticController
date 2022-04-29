@@ -53,6 +53,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   Controller.msg
+  ME439WaypointXYZ.msg
 )
 
 ## Generate services in the 'srv' folder
