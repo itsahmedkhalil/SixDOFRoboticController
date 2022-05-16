@@ -53,7 +53,7 @@ The Arduino used in this project is the [**Arduino Nano with ATMega328**](http:/
 
 ## Setting up the IMU
 
-#### The IMU used in this project is the [**LPMS-B2 Series**](https://lp-research.com/9-axis-bluetooth-imu-lpmsb2-series/) by lp-research. It determines the orientation of the controller by fusing three different MEMS sensors (3-axis gyroscope, 3-axis accelerometer, and 3-axis magnetometer). To use the IMU you need to download [**OpenZen**](https://lpresearch.bitbucket.io/openzen/latest/index.html) which is a high performance sensor data streaming and processing software. The IMU communicates with the host computer via Bluetooth. The bluetooth dongle that worked for us was the [**TP-Link USB Adapter**](https://www.amazon.com/gp/product/B07V1SZCY6/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1). 
+The IMU used in this project is the [**LPMS-B2 Series**](https://lp-research.com/9-axis-bluetooth-imu-lpmsb2-series/) by lp-research. It determines the orientation of the controller by fusing three different MEMS sensors (3-axis gyroscope, 3-axis accelerometer, and 3-axis magnetometer). To use the IMU you need to download [**OpenZen**](https://lpresearch.bitbucket.io/openzen/latest/index.html) which is a high performance sensor data streaming and processing software. The IMU communicates with the host computer via Bluetooth. The bluetooth dongle that worked for us was the [**TP-Link USB Adapter**](https://www.amazon.com/gp/product/B07V1SZCY6/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1). 
 
 ### Download the pre-compiled OpenZen Software
 #### Install gcc7 or higher (requires C++17 support): 
