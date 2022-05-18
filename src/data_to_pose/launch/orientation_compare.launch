@@ -1,0 +1,10 @@
+<launch>
+    <!-- This launches the IMU and mocap orientation comparison in RVIZ and RQT-->
+    <node name="orientation_error" pkg="data_to_pose" type="orientation_error.py" output="screen"/>
+    <node name="data_to_pose_node" pkg="data_to_pose" type="imu_rviz.py" output="screen"/>
+    <node name="mocap_pose" pkg="data_to_pose" type="mocap_rviz.py" output="screen"/>
+    <node name="rviz" type="rviz" pkg="rviz" args="-d $(find data_to_pose)/rviz/joy_config.rviz" required="true"/>
+    <!-- You can change the bagfile as desired from the bagfiles directory-->
+    <node pkg = "rosbag" type = "play" name="name" output="screen" args="$(find data_to_pose)/bagfiles/pureOrientation.bag" />
+    <node name="rqt_plot" pkg="rqt_plot" type="rqt_plot" args="/orientation_error"/>
+</launch>

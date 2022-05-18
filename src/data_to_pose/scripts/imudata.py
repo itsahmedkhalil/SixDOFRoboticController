@@ -13,12 +13,17 @@ from scipy.spatial.transform import Rotation as R
 import random
 from geometry_msgs.msg import Quaternion, Twist, Vector3
 import sys
+""" Appends the path of openzen.so NEED TO CHANGE DIRECTORY or just add the openzen.so into the scripts directory"""
 sys.path.append('/home/mohamed/openzen/build')
 # sys.path.append('/home/ahmedkhalil/openzen')
 import openzen
 
 
 def main(): 
+    """
+    This function finds the LPMS IMU, reads the sensor data, and publishes the quaternion and gyro data
+    at a rate of 400 Hz
+    """
     imuPub = rospy.Publisher("/imu_data", Quaternion, queue_size=2)
     angVelPub = rospy.Publisher("/gyr_data", Vector3, queue_size=2)
     angVel = Vector3()
@@ -100,32 +105,21 @@ def main():
 
             imu_data = zenEvent.data.imu_data
         
+        # the if statement is just for storing the initial orientation of the LPMS 
         if counter > 100:
             quat = np.array(imu_data.q) #comes in as w,x,y,z
             gyr = np.array(imu_data.g)
             quat = np.array([quat[1], quat[2],quat[3],quat[0]]) # want in x,y,z,w order
             rot = R.from_quat(quat).inv()   #The LPMS inherently gets the inverse orientation
             quat = rot.as_quat()
-            #quat = np.array([quat[3], quat[0],quat[1],quat[2]]) # convert back to w,x,y,z order
-
-            # quat1 = np.array([quat[0],-quat[1],-quat[2],-quat[3]])
 
             quat_new = quaternion_multiply(quat_init,quat) #=(q_init_wrt_g)^-1 * q_sensor_wrt_g
-            #rot_new = R.from_quat(quat_new).inv()
-            #quat_new = rot_new.as_quat()
 
             imu_angle.w = quat_new[3]
             imu_angle.x = quat_new[0]
             imu_angle.y = quat_new[1]
             imu_angle.z = quat_new[2]
 
-            # imu_angle.w = quat[0]
-            # imu_angle.x = -quat[1]
-            # imu_angle.y = -quat[2]
-            # imu_angle.z = -quat[3]
-
-            #r = R.from_quat([-quat[1],-quat[2],-quat[3],quat[0]])
-            #print(gyr)
             angVel.x = gyr[0]*np.pi/180.0
             angVel.y = gyr[1]*np.pi/180.0
             angVel.z = gyr[2]*np.pi/180.0
@@ -148,14 +142,8 @@ def main():
         #     pass
         rate.sleep()
     
-# def quaternion_multiply(quaternion1, quaternion0):
-#     w0, x0, y0, z0 = quaternion0
-#     w1, x1, y1, z1 = quaternion1
-#     return np.array([-x1 * x0 - y1 * y0 - z1 * z0 + w1 * w0,
-#                 x1 * w0 + y1 * z0 - z1 * y0 + w1 * x0,
-#                 -x1 * z0 + y1 * w0 + z1 * x0 + w1 * y0,
-#                 x1 * y0 - y1 * x0 + z1 * w0 + w1 * z0], dtype=np.float64)
 def quaternion_multiply(quaternion1, quaternion0):
+    """Function used for efficiently multiplying two quaternions"""
     x0, y0, z0, w0 = quaternion0
     x1, y1, z1, w1 = quaternion1
     return np.array([x1 * w0 + y1 * z0 - z1 * y0 + w1 * x0,

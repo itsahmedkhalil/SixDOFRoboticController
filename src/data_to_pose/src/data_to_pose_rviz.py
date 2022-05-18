@@ -14,12 +14,15 @@ from rospy import Time
 
 
 class data2Pose:
+    """
+    Joystick and IMU data converted into pose for rviz visualization
+    """
     def __init__(self):
         self.b = TransformBroadcaster()
         self.translation = (0.0, 0.0, 0.0)
         self.rotation = (0.0, 0.0, 0.0, 1.0)
         self.rate = rospy.Rate(500)
-        # Initialize the publisher for the marker
+        # Initialize the publisher for the marker (you can use it for the marker game!)
         self.marker_pub = rospy.Publisher("/visualization_marker", Marker, queue_size=1)
         self.marker = Marker()
         self.marker.header.frame_id = "world"
@@ -60,7 +63,7 @@ class data2Pose:
         self.q0 = 1
 
     def orientationCallback(self, msg):
-        # "Store" message received.
+        # "Recieve" IMU quaternion message.
         self.q1 = msg.x
         self.q2 = msg.y
         self.q3 = msg.z
@@ -69,7 +72,7 @@ class data2Pose:
         self.compute_stuff()
 
     def velocityCallback(self, msg):
-        # "Store" the message received.
+        # "Recieve" IMU angular velocity message.
         self.angVelx = msg.x
         self.angVely = msg.y
         self.angVelz = msg.z
@@ -78,7 +81,7 @@ class data2Pose:
         self.compute_stuff()
     
     def joyCallback(self, msg):
-        # "Store" the message received.
+        # "Recieve" joystick message and convert it into desired "velocity" values.
         joyX = msg.data[0]
         joyY = msg.data[1]
         joyZ = msg.data[2]
@@ -95,13 +98,13 @@ class data2Pose:
         self.compute_stuff()
 
     def compute_stuff(self):
-        
+        # Rotate the velocity data from the joystick by the rotation of the IMU
+        # && publish the tf 
         rotation = (self.q1, self.q2, self.q3, self.q0)
         r = R.from_quat(np.array([self.q1, self.q2, self.q3, self.q0]))
         r_pos = r.apply(np.array(self.joy))
         self.pos+=r_pos*self.dt
         self.marker_pub.publish(self.marker)
-        # rospy.loginfo(np.linalg.norm(r_acc))
         self.b.sendTransform(self.pos, rotation,Time.now(), 'imu', '/world')
 
 
