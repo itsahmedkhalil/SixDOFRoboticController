@@ -46,12 +46,12 @@ void loop()
   xPosition = analogRead(VRx);
   yPosition = analogRead(VRy);
   joyButton = analogRead(B0);
-  if (joyButton < 150 && digitalRead(B1)==LOW){
+  if (joyButton < 150){
     joyButton = 1;
     }
-  else if (joyButton < 150 && digitalRead(B2)==LOW){
-    joyButton = -1;
-    }
+//  else if (joyButton < 150 && digitalRead(B2)==LOW){
+//    joyButton = -1;
+//    }
   else {
     joyButton = 0;
     }

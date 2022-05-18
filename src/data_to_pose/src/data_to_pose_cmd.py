@@ -17,6 +17,11 @@ from std_msgs.msg import Bool
 
 
 class data2Pose:
+    """
+    This class converts the incoming joystick and IMU data, into waypoints, 
+    which can be used for controlling a 6DOF Arm Robot. From the x,y,z points, 
+    the required angles can be computed using inverse kinematics (not done here).  
+    """
     def __init__(self):
         self.pose_msg = ME439WaypointXYZ()
         self.path_complete = Bool()
@@ -43,7 +48,7 @@ class data2Pose:
         self.pose_msg.xyz[2] = 0.2057
 
     def orientationCallback(self, msg):
-        # "Store" message received.
+        # "Store" IMU quaternion message.
         self.q1 = msg.x
         self.q2 = msg.y
         self.q3 = msg.z
@@ -52,7 +57,7 @@ class data2Pose:
         self.compute_stuff()
 
     def velocityCallback(self, msg):
-        # "Store" the message received.
+        # "Store" IMU angular velocity message.
         self.angVelx = msg.x
         self.angVely = msg.y
         self.angVelz = msg.z
@@ -61,26 +66,25 @@ class data2Pose:
         self.compute_stuff()
     
     def joyCallback(self, msg):
-        # "Store" the message received.
+        # "Store" joystick message and convert it into desired "velocity" values.
         joyX = msg.data[0]
         joyY = -msg.data[1]
         joyZ = msg.data[2]
         self.joy = [joyX,joyY,joyZ]
         vel = [0,0,0]
         for i in range(2):
-            if abs(self.joy[i]) < 15:
+            if abs(self.joy[i]) < 25:
                 self.joy[i] = 0
             else:
-                self.joy[i] = self.joy[i]*0.00005
+                self.joy[i] = self.joy[i]*0.00001
             
         self.joy[2] =self.joy[2]*0.005
         # Compute stuff.
         self.compute_stuff()
 
     def compute_stuff(self):
-
-        #rotation = (-self.q1, -self.q2, -self.q3, self.q0)
-        rotation = (self.q1, self.q2, self.q3, self.q0)
+        # Rotate the velocity data from the joystick by the rotation of the IMU
+        # && publish the waypoints 
         r = R.from_quat(np.array([self.q1, self.q2, self.q3, self.q0]))
         r_pos = r.apply(np.array(self.joy))
         

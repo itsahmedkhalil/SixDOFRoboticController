@@ -1,6 +1,8 @@
-<node pkg="vrpn_client_ros" type="vrpn_client_node" name="vrpn_client_node" output="screen">
+<launch>
+  <!-- Mocap and IMU launch-->
+  <node pkg="vrpn_client_ros" type="vrpn_client_node" name="vrpn_client_node" output="screen">
     <rosparam subst_value="true">
-      server: 10.134.71.233
+      server: 10.134.71.249
       port: 3883
 
       update_frequency: 100.0
@@ -17,3 +19,6 @@
       #- SecondTracker
     </rosparam>
   </node>
+  <node name="imu_publisher" pkg="data_to_pose" type="imudata.py" output="screen"/>
+
+</launch>

@@ -6,6 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 514
   - Class: rviz/Selection
@@ -56,11 +58,15 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
-        controller:
+        All Enabled: false
+        RigidBody:
+          Value: true
+        mocap:
+          Value: true
+        mocap_world:
           Value: true
         world:
-          Value: true
+          Value: false
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -69,7 +75,7 @@ Visualization Manager:
       Show Names: true
       Tree:
         world:
-          controller:
+          mocap:
             {}
       Update Interval: 0
       Value: true
@@ -101,7 +107,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 0.6698604822158813
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
