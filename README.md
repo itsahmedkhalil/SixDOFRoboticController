@@ -168,7 +168,7 @@ The IMU used in this project is the [**LPMS-B2 Series**](https://lp-research.com
 
   - Python file that reads the LPMS sensor data and publishes the data to the ROS node.
   - **IMPORTANT**: Make sure to change this line sys.path.append('/home/ahmed/build/openzen') to your path to the OpenZen build folder. Also make sure that you 'import openzen' after you had appended the openzen path to the sys, otherwise Python will not be able to find the openzen module.
-  - If you don't want append the path of openzen.so, you can include it in the scripts directory (same path as imudata.py).
+  - If you don't want to append the path of openzen.so, you can include it in the scripts directory (same path as imudata.py).
 
   - The file subscribes to /gyr_data
 
