@@ -13,6 +13,8 @@ This project's purpose is to control a 6 DOF robot arm using an IMU for orientat
 - Buttons: Push buttons from [UW Madison Makerspace](https://making.engr.wisc.edu/mini-mart/#electronics)
 - Arduino Nano: [**Arduino Nano with ATMega328**](http://store.arduino.cc/products/arduino-nano)
 
+![IMAGE_ALT](/images/controller_ciruit.png)
+
 The controller's frame, button fixture, and joystick fixture, were all 3D printed using PLA material on a Ultimaker 3 3D printer. The IMU's fixture was 3D printed using Flexible resin on a Formslab 3D printer. While all of the Solidwork models are available for download, many of them require small design changes to prevent the user from needing to do any extra machining. Below is a photo of the final controller. Click on the photo to be redirected to a video of the controller working on a 6 DOF 'mini' robotic arm.
 
 **Note:** The reflective balls attached to the controller's frame are used to track the controller using an optical mocap tracking system. We only used this tracking system to test the IMU's orientation values by comparing it to 'absolute' values and it was not used when controlling the robot.
@@ -172,6 +174,3 @@ The IMU used in this project is the [**LPMS-B2 Series**](https://lp-research.com
 
   - The file subscribes to /gyr_data
 
-# To do:
-
-- Circuit design
