@@ -33,6 +33,20 @@ This project was created by [Ahmed Khalil](https://itsahmedkhalil.github.io/) an
 
 `$ cd Controller_Research && catkin build #builds all of the packages in the workspace `
 
+### Dependencies 
+
+#### Transforms package
+
+`$ pip install transforms3d`
+
+#### Scipy
+
+`$ pip install scipy`
+
+#### Numpy
+
+`$ pip install numpy`
+
 ## Setting up the Arduino
 
 The Arduino used in this project is the [**Arduino Nano with ATMega328**](http://store.arduino.cc/products/arduino-nano). It runs using [**rosserial**](http://wiki.ros.org/rosserial_arduino/Tutorials) which allows devices such as the Arduino to interface with ROS by creating ROS nodes.
@@ -154,6 +168,7 @@ The IMU used in this project is the [**LPMS-B2 Series**](https://lp-research.com
 
   - Python file that reads the LPMS sensor data and publishes the data to the ROS node.
   - **IMPORTANT**: Make sure to change this line sys.path.append('/home/ahmed/build/openzen') to your path to the OpenZen build folder. Also make sure that you 'import openzen' after you had appended the openzen path to the sys, otherwise Python will not be able to find the openzen module.
+  - If you don't want append the path of openzen.so, you can include it in the scripts directory (same path as imudata.py).
 
   - The file subscribes to /gyr_data
 
