@@ -35,7 +35,7 @@ This project was created by [Ahmed Khalil](https://itsahmedkhalil.github.io/) an
 
 ## Setting up the Arduino
 
-The Arduino used in this project is the [**Arduino Nano with ATMega328**](http://store.arduino.cc/products/arduino-nano). It runs using [**rosserial**](http://wiki.ros.org/rosserial_arduino/Tutorials) which allowes devides like the Arduino to interface with ROS by creating ROS nodes.
+The Arduino used in this project is the [**Arduino Nano with ATMega328**](http://store.arduino.cc/products/arduino-nano). It runs using [**rosserial**](http://wiki.ros.org/rosserial_arduino/Tutorials) which allows devices such as the Arduino to interface with ROS by creating ROS nodes.
 
 ### Install the rosserial package
 
