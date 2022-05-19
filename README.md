@@ -11,7 +11,7 @@ This project's purpose is to control a 6 DOF robot arm using an IMU for orientat
 - IMU: [**LPMS-B2 Series**](https://lp-research.com/9-axis-bluetooth-imu-lpmsb2-series/)
 - Joystick: [**HiLetgo Joystick**](https://www.amazon.com/HiLetgo-Controller-JoyStick-Breakout-Arduino/dp/B00P7QBGD2/ref=sr_1_4?keywords=arduino+joystick&qid=1652826594&sr=8-4)
 - Buttons: Push buttons from [UW Madison Makerspace](https://making.engr.wisc.edu/mini-mart/#electronics)
-- Arduino Nano: [**Arduino Nano with ATMega328**](http://store.arduino.cc/products/arduino-nano)
+- Arduino Nano: [**Arduino Nano 33 BLE**](https://store-usa.arduino.cc/products/arduino-nano-33-ble-sense)
 
 ![IMAGE_ALT](/images/controller_ciruit.png)
 
@@ -51,7 +51,7 @@ This project was created by [Ahmed Khalil](https://itsahmedkhalil.github.io/) an
 
 ## Setting up the Arduino
 
-The Arduino used in this project is the [**Arduino Nano with ATMega328**](http://store.arduino.cc/products/arduino-nano). It runs using [**rosserial**](http://wiki.ros.org/rosserial_arduino/Tutorials) which allows devices such as the Arduino to interface with ROS by creating ROS nodes.
+The Arduino used in this project is the [**Arduino Nano 33 BLE**](https://store-usa.arduino.cc/products/arduino-nano-33-ble-sense). It runs using [**rosserial**](http://wiki.ros.org/rosserial_arduino/Tutorials) which allows devices such as the Arduino to interface with ROS by creating ROS nodes.
 
 ### Install the rosserial package
 
